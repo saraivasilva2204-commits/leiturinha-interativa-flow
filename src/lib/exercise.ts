@@ -1,7 +1,9 @@
 export type Difficulty = "facil" | "medio" | "dificil";
 
 export type StoryItem = {
-  agent: string;
+  agentName: string;       // "Lucas"
+  agentRole: string;       // "um estudante curioso de engenharia"
+  agentFull: string;       // "Lucas, um estudante curioso de engenharia"
   action: string;
   environment: string;
   means: string;
@@ -21,9 +23,11 @@ export type Question = {
   correctIndex: number;
 };
 
+type Persona = { name: string; role: string };
+
 type Theme = {
   name: string;
-  agents: string[];
+  personas: Persona[];
   actions: string[];
   environments: string[];
   means: string[];
@@ -33,43 +37,168 @@ type Theme = {
 const themes: Theme[] = [
   {
     name: "ciencia",
-    agents: ["uma pesquisadora", "um cientista jovem", "uma bióloga curiosa", "um engenheiro atento"],
-    actions: ["analisava amostras raras", "testava uma nova hipótese", "mapeava sinais incomuns", "documentava reações químicas"],
-    environments: ["um laboratório silencioso", "uma sala de experimentos iluminada", "um centro de pesquisa subterrâneo", "um observatório isolado"],
-    means: ["usando algoritmos avançados", "com microscópios de alta precisão", "por meio de simulações computacionais", "através de sensores sensíveis"],
-    effects: ["o que revelou um padrão inédito", "resultando em uma descoberta inesperada", "o que mudou toda a investigação", "abrindo caminho para uma nova teoria"],
+    personas: [
+      { name: "Mariana", role: "uma bióloga marinha experiente" },
+      { name: "Otávio", role: "um pesquisador iniciante de genética" },
+      { name: "Helena", role: "uma astrônoma dedicada" },
+      { name: "Bruno", role: "um químico veterano" },
+    ],
+    actions: [
+      "analisava amostras de coral coletadas no fundo do mar",
+      "comparava sequências de DNA suspeitas",
+      "registrava o brilho de uma estrela recém-descoberta",
+      "testava a reação de um novo composto",
+    ],
+    environments: [
+      "no laboratório oceanográfico de Florianópolis",
+      "na sala de sequenciamento do instituto Butantan",
+      "no observatório de Pico dos Dias, em Minas Gerais",
+      "em um laboratório climatizado da Unicamp",
+    ],
+    means: [
+      "utilizando um microscópio eletrônico de alta resolução",
+      "com o auxílio de um software de bioinformática",
+      "por meio de um telescópio refletor de longo alcance",
+      "manipulando reagentes em uma capela de exaustão",
+    ],
+    effects: [
+      "o que levou à identificação de uma espécie inédita",
+      "resultando na descoberta de uma mutação rara",
+      "confirmando a existência de um sistema planetário próximo",
+      "provocando uma reação em cadeia inesperada",
+    ],
   },
   {
     name: "escola",
-    agents: ["uma professora dedicada", "um estudante distraído", "uma aluna criativa", "um bibliotecário paciente"],
-    actions: ["organizava materiais antigos", "revisava anotações esquecidas", "preparava uma aula diferente", "buscava um livro raro"],
-    environments: ["uma biblioteca silenciosa", "uma sala de aula vazia", "um corredor empoeirado", "um auditório iluminado"],
-    means: ["com a ajuda de fichas coloridas", "seguindo um método antigo", "usando um caderno detalhado", "com atenção minuciosa"],
-    effects: ["o que despertou novas ideias", "resultando em uma lição memorável", "que mudou sua percepção da matéria", "criando uma conexão inesperada"],
+    personas: [
+      { name: "Lucas", role: "um estudante curioso do ensino médio" },
+      { name: "Beatriz", role: "uma professora de literatura recém-formada" },
+      { name: "Camila", role: "uma bibliotecária paciente" },
+      { name: "Diego", role: "um aluno aplicado do curso de história" },
+    ],
+    actions: [
+      "revisava anotações para uma prova decisiva",
+      "preparava uma aula sobre poesia modernista",
+      "organizava livros raros em ordem cronológica",
+      "transcrevia trechos de um manuscrito antigo",
+    ],
+    environments: [
+      "na biblioteca central da universidade",
+      "em uma sala de aula vazia ao final da tarde",
+      "no acervo histórico do colégio municipal",
+      "em uma cabine de estudos do segundo andar",
+    ],
+    means: [
+      "com fichas resumo coloridas e marcadores",
+      "utilizando uma apresentação de slides interativa",
+      "consultando um catálogo digital especializado",
+      "com o auxílio de uma lupa e um caderno detalhado",
+    ],
+    effects: [
+      "o que garantiu uma nota acima da média na avaliação",
+      "despertando o interesse dos alunos por autores brasileiros",
+      "permitindo recuperar três obras dadas como perdidas",
+      "revelando uma assinatura escondida nas margens do texto",
+    ],
   },
   {
     name: "tecnologia",
-    agents: ["um desenvolvedor focado", "uma designer atenta", "um analista experiente", "uma programadora inquieta"],
-    actions: ["depurava um sistema complexo", "redesenhava uma interface", "monitorava sinais de rede", "automatizava tarefas repetitivas"],
-    environments: ["um escritório minimalista", "uma sala servidor refrigerada", "um coworking movimentado", "um estúdio criativo"],
-    means: ["com scripts personalizados", "por meio de inteligência artificial", "usando ferramentas de monitoramento", "através de testes automatizados"],
-    effects: ["o que otimizou o processo", "resultando em uma falha crítica corrigida", "que economizou horas de trabalho", "expondo uma vulnerabilidade oculta"],
+    personas: [
+      { name: "Rafael", role: "um jovem programador júnior" },
+      { name: "Sofia", role: "uma analista de segurança da informação" },
+      { name: "Vinícius", role: "um designer de produto sênior" },
+      { name: "Larissa", role: "uma engenheira de dados experiente" },
+    ],
+    actions: [
+      "depurava uma falha intermitente no sistema de pagamentos",
+      "monitorava acessos suspeitos vindos do exterior",
+      "redesenhava o fluxo de cadastro do aplicativo",
+      "automatizava o processamento dos relatórios mensais",
+    ],
+    environments: [
+      "em um escritório minimalista no centro de São Paulo",
+      "na sala de monitoramento da empresa, à meia-noite",
+      "em um estúdio de design iluminado por luz natural",
+      "em uma sala de servidores refrigerada do data center",
+    ],
+    means: [
+      "com a ajuda de logs estruturados e um depurador remoto",
+      "utilizando um painel de inteligência de ameaças",
+      "por meio de protótipos interativos no Figma",
+      "executando scripts em Python agendados a cada hora",
+    ],
+    effects: [
+      "o que reduziu o tempo de resposta do sistema pela metade",
+      "bloqueando uma tentativa de invasão antes que causasse prejuízo",
+      "aumentando em 40% a taxa de conclusão do cadastro",
+      "economizando dois dias de trabalho manual por semana",
+    ],
   },
   {
     name: "misterio",
-    agents: ["um detetive observador", "uma jornalista cética", "um arqueólogo veterano", "uma investigadora discreta"],
-    actions: ["seguia uma pista esquecida", "decifrava um manuscrito antigo", "examinava uma cena obscura", "rastreava um som distante"],
-    environments: ["uma mansão abandonada", "uma vila enevoada", "um sótão empoeirado", "uma rua deserta ao amanhecer"],
-    means: ["com uma lanterna pequena", "guiado por anotações cifradas", "usando um mapa rasgado", "através de pistas sutis"],
-    effects: ["o que revelou uma verdade oculta", "levando a uma reviravolta surpreendente", "que mudou o rumo do caso", "expondo um segredo guardado por anos"],
+    personas: [
+      { name: "Inspetor Henrique", role: "um detetive observador da polícia civil" },
+      { name: "Júlia", role: "uma jornalista investigativa cética" },
+      { name: "Ricardo", role: "um arqueólogo veterano" },
+      { name: "Tereza", role: "uma perita criminal discreta" },
+    ],
+    actions: [
+      "examinava pegadas deixadas próximas a uma janela quebrada",
+      "comparava depoimentos contraditórios de três testemunhas",
+      "decifrava inscrições gravadas em uma placa de bronze",
+      "coletava fragmentos de tecido encontrados na cena",
+    ],
+    environments: [
+      "em uma mansão abandonada nos arredores de Petrópolis",
+      "em uma redação silenciosa às três da manhã",
+      "em um sítio arqueológico nas serras do Piauí",
+      "em um beco estreito do centro histórico de Salvador",
+    ],
+    means: [
+      "com o auxílio de uma lanterna ultravioleta",
+      "cruzando informações em uma planilha detalhada",
+      "utilizando um pincel fino e uma escova macia",
+      "com pinças esterilizadas e sacos de evidência",
+    ],
+    effects: [
+      "o que apontou um suspeito até então ignorado",
+      "expondo uma contradição que mudou o rumo da investigação",
+      "revelando uma data anterior à esperada para o sítio",
+      "resultando na identificação do responsável em poucos dias",
+    ],
   },
   {
     name: "cotidiano",
-    agents: ["uma padeira madrugadora", "um músico de rua", "uma jardineira tranquila", "um entregador apressado"],
-    actions: ["preparava uma receita especial", "ensaiava uma melodia nova", "cuidava de plantas raras", "organizava entregas do dia"],
-    environments: ["uma cozinha aconchegante", "uma praça movimentada", "um jardim ensolarado", "um galpão organizado"],
-    means: ["com ingredientes selecionados", "usando um instrumento antigo", "com ferramentas próprias", "seguindo uma rota cuidadosa"],
-    effects: ["o que encantou os clientes", "atraindo uma pequena multidão", "resultando em flores únicas", "garantindo um dia produtivo"],
+    personas: [
+      { name: "Dona Cecília", role: "uma padeira madrugadora do bairro" },
+      { name: "Eduardo", role: "um músico de rua talentoso" },
+      { name: "Patrícia", role: "uma jardineira tranquila" },
+      { name: "Marcos", role: "um entregador de bicicleta apressado" },
+    ],
+    actions: [
+      "preparava uma fornada especial de pão de queijo",
+      "ensaiava uma melodia inédita no violão",
+      "transplantava orquídeas raras com cuidado",
+      "organizava as entregas do dia em rotas otimizadas",
+    ],
+    environments: [
+      "na cozinha aconchegante da padaria Estrela do Sul",
+      "no calçadão da praia de Copacabana ao entardecer",
+      "em uma estufa coberta no bairro Jardim Botânico",
+      "em um galpão de logística próximo à rodoviária",
+    ],
+    means: [
+      "seguindo uma receita herdada da avó",
+      "com um violão clássico de cordas de náilon",
+      "usando ferramentas próprias e adubo orgânico",
+      "consultando um aplicativo de rotas no celular",
+    ],
+    effects: [
+      "o que atraiu uma fila de clientes pela manhã",
+      "reunindo uma pequena multidão em poucos minutos",
+      "fazendo as flores desabrocharem em tempo recorde",
+      "garantindo que todas as entregas chegassem antes do almoço",
+    ],
   },
 ];
 
@@ -89,14 +218,13 @@ function shuffle<T>(arr: T[]): T[] {
 const difficultyOrder: Difficulty[] = ["facil", "medio", "dificil"];
 
 function buildText(s: Omit<StoryItem, "text" | "difficulty">, difficulty: Difficulty): string {
-  // Light variation in connectors based on difficulty
   if (difficulty === "facil") {
-    return `${cap(s.agent)} ${s.action} em ${s.environment}, ${s.means}, ${s.effect}.`;
+    return `${s.agentFull} ${s.action} ${s.environment}, ${s.means}, ${s.effect}.`;
   }
   if (difficulty === "medio") {
-    return `Em ${s.environment}, ${s.agent} ${s.action} ${s.means}, ${s.effect}.`;
+    return `${cap(s.environment)}, ${s.agentFull} ${s.action} ${s.means}, ${s.effect}.`;
   }
-  return `${cap(s.agent)}, em ${s.environment}, ${s.action} ${s.means} — ${s.effect}.`;
+  return `${s.agentFull}, ${s.environment}, ${s.action} ${s.means} — ${s.effect}.`;
 }
 
 function cap(str: string): string {
@@ -105,6 +233,7 @@ function cap(str: string): string {
 
 export function generateStories(count = 3): StoryItem[] {
   const usedThemes = new Set<string>();
+  const usedNames = new Set<string>();
   const stories: StoryItem[] = [];
 
   for (let i = 0; i < count; i++) {
@@ -116,8 +245,18 @@ export function generateStories(count = 3): StoryItem[] {
 
     const difficulty = difficultyOrder[Math.min(i, difficultyOrder.length - 1)];
 
+    let persona: Persona;
+    let attempts = 0;
+    do {
+      persona = pickRandom(theme.personas);
+      attempts++;
+    } while (usedNames.has(persona.name) && attempts < 8);
+    usedNames.add(persona.name);
+
     const base = {
-      agent: pickRandom(theme.agents),
+      agentName: persona.name,
+      agentRole: persona.role,
+      agentFull: `${persona.name}, ${persona.role}`,
       action: pickRandom(theme.actions),
       environment: pickRandom(theme.environments),
       means: pickRandom(theme.means),
@@ -134,19 +273,25 @@ export function generateStories(count = 3): StoryItem[] {
   return stories;
 }
 
-const fieldPrompts: Record<QuestionField, (i: number) => string> = {
-  agent: (i) => `Quem era o agente do texto ${i + 1}?`,
-  action: (i) => `O que o agente fez no texto ${i + 1}?`,
-  environment: (i) => `Onde se passava o texto ${i + 1}?`,
-  means: (i) => `Qual foi o meio utilizado no texto ${i + 1}?`,
-  effect: (i) => `Qual foi o efeito final no texto ${i + 1}?`,
+// Natural prompts referencing the agent by name (no "no texto N").
+const fieldPrompts: Record<QuestionField, (story: StoryItem) => string> = {
+  agent: () => `Qual era o nome da pessoa descrita nessa passagem?`,
+  action: (s) => `O que ${s.agentName} estava fazendo?`,
+  environment: (s) => `Onde ${s.agentName} se encontrava?`,
+  means: (s) => `Que recurso ${s.agentName} utilizou para realizar a tarefa?`,
+  effect: (s) => `Qual foi a consequência da ação de ${s.agentName}?`,
 };
 
 function distractorPool(field: QuestionField, exclude: string[]): string[] {
   const pool: string[] = [];
   themes.forEach((t) => {
+    if (field === "agent") {
+      t.personas.forEach((p) => {
+        if (!exclude.includes(p.name)) pool.push(p.name);
+      });
+      return;
+    }
     const arr =
-      field === "agent" ? t.agents :
       field === "action" ? t.actions :
       field === "environment" ? t.environments :
       field === "means" ? t.means :
@@ -156,6 +301,11 @@ function distractorPool(field: QuestionField, exclude: string[]): string[] {
     });
   });
   return pool;
+}
+
+function correctValueFor(story: StoryItem, field: QuestionField): string {
+  if (field === "agent") return story.agentName;
+  return story[field];
 }
 
 function buildOptions(correct: string, pool: string[]): { options: string[]; idx: number } {
@@ -171,32 +321,32 @@ export function generateQuestions(stories: StoryItem[]): Question[] {
 
   stories.forEach((story, i) => {
     const field = fields[i % fields.length];
-    const correct = story[field];
-    const allValuesUsed = stories.map((s) => s[field]);
-    const { options, idx } = buildOptions(correct, distractorPool(field, allValuesUsed));
+    const correct = correctValueFor(story, field);
+    const allUsed = stories.map((s) => correctValueFor(s, field));
+    const { options, idx } = buildOptions(correct, distractorPool(field, allUsed));
     questions.push({
       id: `q-${i}-${field}`,
       storyIndex: i,
       field,
-      prompt: fieldPrompts[field](i),
+      prompt: fieldPrompts[field](story),
       options,
       correctIndex: idx,
     });
   });
 
-  // Add 2 extra cross-questions on different fields for depth
-  const extraFields: QuestionField[] = ["effect", "means"];
-  extraFields.forEach((field, k) => {
+  // Two extra questions on different fields, also natural-sounding.
+  const extras: QuestionField[] = ["effect", "agent"];
+  extras.forEach((field, k) => {
     const storyIndex = (k + 1) % stories.length;
     const story = stories[storyIndex];
-    const correct = story[field];
-    const allValuesUsed = stories.map((s) => s[field]);
-    const { options, idx } = buildOptions(correct, distractorPool(field, allValuesUsed));
+    const correct = correctValueFor(story, field);
+    const allUsed = stories.map((s) => correctValueFor(s, field));
+    const { options, idx } = buildOptions(correct, distractorPool(field, allUsed));
     questions.push({
       id: `q-extra-${storyIndex}-${field}-${k}`,
       storyIndex,
       field,
-      prompt: fieldPrompts[field](storyIndex),
+      prompt: fieldPrompts[field](story),
       options,
       correctIndex: idx,
     });
@@ -230,7 +380,6 @@ export function analyzePerformance(params: {
   const avgRead = readingTimes.reduce((a, b) => a + b, 0) / Math.max(readingTimes.length, 1);
   const avgAns = answerTimes.reduce((a, b) => a + b, 0) / Math.max(answerTimes.length, 1);
 
-  // Reading speed heuristics (per text)
   if (avgRead < 6000 && ratio < 0.7) {
     insights.push("Boa memória, mas leitura rápida demais pode ter afetado sua precisão.");
   } else if (avgRead > 18000 && ratio >= 0.8) {
