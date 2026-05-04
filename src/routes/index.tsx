@@ -38,14 +38,16 @@ type Phase = "intro" | "reading" | "questions" | "feedback";
 function Index() {
   const [phase, setPhase] = useState<Phase>("intro");
   const [seed, setSeed] = useState(0);
-  const [times, setTimes] = useState<number[]>([]);
+  const [readingTimes, setReadingTimes] = useState<number[]>([]);
+  const [answerTimes, setAnswerTimes] = useState<number[]>([]);
   const [answers, setAnswers] = useState<number[]>([]);
 
   const stories: StoryItem[] = useMemo(() => generateStories(3), [seed]);
   const questions: Question[] = useMemo(() => generateQuestions(stories), [stories]);
 
   const restart = () => {
-    setTimes([]);
+    setReadingTimes([]);
+    setAnswerTimes([]);
     setAnswers([]);
     setSeed((s) => s + 1);
     setPhase("intro");
@@ -75,7 +77,7 @@ function Index() {
             <ReadingScreen
               stories={stories}
               onFinish={(t) => {
-                setTimes(t);
+                setReadingTimes(t);
                 setPhase("questions");
               }}
             />
@@ -83,8 +85,9 @@ function Index() {
           {phase === "questions" && (
             <QuestionsScreen
               questions={questions}
-              onSubmit={(a) => {
+              onSubmit={(a, ts) => {
                 setAnswers(a);
+                setAnswerTimes(ts);
                 setPhase("feedback");
               }}
             />
@@ -93,7 +96,8 @@ function Index() {
             <FeedbackScreen
               questions={questions}
               answers={answers}
-              times={times}
+              readingTimes={readingTimes}
+              answerTimes={answerTimes}
               onRestart={restart}
             />
           )}
