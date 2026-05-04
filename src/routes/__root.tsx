@@ -29,14 +29,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "destravae" },
+      { name: "description", content: "Destravaê Mind Boost is an interactive educational web app that enhances reading comprehension, memory, and textual interpretation." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "destravae" },
+      { property: "og:description", content: "Destravaê Mind Boost is an interactive educational web app that enhances reading comprehension, memory, and textual interpretation." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "destravae" },
+      { name: "twitter:description", content: "Destravaê Mind Boost is an interactive educational web app that enhances reading comprehension, memory, and textual interpretation." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c0730444-aede-48e8-914b-e81592e28962/id-preview-960d0ea8--31e88baa-aa55-44fb-9f5c-b94be36373e8.lovable.app-1777292974994.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c0730444-aede-48e8-914b-e81592e28962/id-preview-960d0ea8--31e88baa-aa55-44fb-9f5c-b94be36373e8.lovable.app-1777292974994.png" },
     ],
     links: [
       {
