@@ -1,88 +1,123 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import type { Question } from "@/lib/exercise";
 
 type Props = {
   questions: Question[];
-  onSubmit: (answers: number[]) => void;
+  onSubmit: (answers: number[], answerTimesMs: number[]) => void;
 };
 
 export function QuestionsScreen({ questions, onSubmit }: Props) {
-  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [index, setIndex] = useState(0);
+  const [answers, setAnswers] = useState<number[]>([]);
+  const [times, setTimes] = useState<number[]>([]);
+  const [selected, setSelected] = useState<number | null>(null);
+  const startRef = useRef<number>(performance.now());
 
-  const allAnswered = questions.every((q) => answers[q.id] !== undefined);
+  useEffect(() => {
+    startRef.current = performance.now();
+    setSelected(null);
+  }, [index]);
 
-  const handleSubmit = () => {
-    if (!allAnswered) return;
-    onSubmit(questions.map((q) => answers[q.id]));
+  const q = questions[index];
+  const isLast = index === questions.length - 1;
+  const progress = ((index + 1) / questions.length) * 100;
+
+  const handleNext = () => {
+    if (selected === null) return;
+    const elapsed = performance.now() - startRef.current;
+    const newAnswers = [...answers, selected];
+    const newTimes = [...times, elapsed];
+    setAnswers(newAnswers);
+    setTimes(newTimes);
+    if (isLast) {
+      onSubmit(newAnswers, newTimes);
+    } else {
+      setIndex(index + 1);
+    }
   };
 
   return (
     <div className="animate-fade-in">
-      <div className="mb-8 text-center">
+      <div className="flex items-center justify-between mb-6">
         <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-          Perguntas
+          Pergunta {index + 1} / {questions.length}
         </span>
-        <h2 className="font-display text-3xl sm:text-4xl mt-2">
-          O que sua mente <span className="text-gradient">guardou</span>?
-        </h2>
+        <div className="flex gap-1.5" aria-hidden="true">
+          {questions.map((_, i) => (
+            <span
+              key={i}
+              className={`h-1.5 w-6 rounded-full transition-all duration-500 ${
+                i <= index ? "bg-gradient-primary" : "bg-muted"
+              }`}
+            />
+          ))}
+        </div>
       </div>
 
-      <div className="space-y-7">
-        {questions.map((q, qi) => (
-          <fieldset key={q.id} className="rounded-2xl border border-border bg-card/40 p-5 sm:p-6">
-            <legend className="px-2 text-xs font-medium uppercase tracking-wider text-primary-glow">
-              {qi + 1} de {questions.length}
-            </legend>
-            <p className="font-display text-xl text-foreground mb-5 leading-snug">
-              {q.prompt}
-            </p>
-            <div className="grid gap-2.5 sm:grid-cols-2">
-              {q.options.map((opt, oi) => {
-                const selected = answers[q.id] === oi;
-                return (
-                  <button
-                    key={oi}
-                    type="button"
-                    onClick={() => setAnswers({ ...answers, [q.id]: oi })}
-                    aria-pressed={selected}
-                    className={`group flex items-start gap-3 rounded-xl border px-4 py-3 text-left text-sm transition-all duration-200 ${
-                      selected
-                        ? "border-primary-glow bg-primary/5 shadow-soft"
-                        : "border-border bg-background hover:border-primary-glow/60 hover:bg-accent/40"
-                    }`}
-                  >
-                    <span
-                      className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-all ${
-                        selected
-                          ? "border-primary-glow bg-gradient-primary text-primary-foreground"
-                          : "border-border bg-background"
-                      }`}
-                      aria-hidden="true"
-                    >
-                      {selected && <Check className="h-3 w-3" strokeWidth={3} />}
-                    </span>
-                    <span className="text-foreground leading-relaxed">{opt}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </fieldset>
-        ))}
+      <div
+        className="h-1 w-full bg-muted rounded-full overflow-hidden mb-10"
+        role="progressbar"
+        aria-valuenow={progress}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      >
+        <div
+          className="h-full bg-gradient-primary transition-all duration-700"
+          style={{ width: `${progress}%` }}
+        />
       </div>
 
-      <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <fieldset key={q.id} className="animate-scale-in">
+        <legend className="sr-only">{q.prompt}</legend>
+        <p className="font-display text-2xl sm:text-3xl text-foreground mb-7 leading-snug">
+          {q.prompt}
+        </p>
+        <div className="grid gap-2.5 sm:grid-cols-2">
+          {q.options.map((opt, oi) => {
+            const isSel = selected === oi;
+            return (
+              <button
+                key={oi}
+                type="button"
+                onClick={() => setSelected(oi)}
+                aria-pressed={isSel}
+                className={`group flex items-start gap-3 rounded-xl border px-4 py-3 text-left text-sm transition-all duration-200 ${
+                  isSel
+                    ? "border-primary-glow bg-primary/5 shadow-soft"
+                    : "border-border bg-background hover:border-primary-glow/60 hover:bg-accent/40"
+                }`}
+              >
+                <span
+                  className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-all ${
+                    isSel
+                      ? "border-primary-glow bg-gradient-primary text-primary-foreground"
+                      : "border-border bg-background"
+                  }`}
+                  aria-hidden="true"
+                >
+                  {isSel && <Check className="h-3 w-3" strokeWidth={3} />}
+                </span>
+                <span className="text-foreground leading-relaxed">{opt}</span>
+              </button>
+            );
+          })}
+        </div>
+      </fieldset>
+
+      <div className="mt-10 flex items-center justify-between gap-4">
         <p className="text-xs text-muted-foreground">
-          {Object.keys(answers).length} de {questions.length} respondidas
+          Selecione uma opção para avançar.
         </p>
         <Button
-          onClick={handleSubmit}
-          disabled={!allAnswered}
+          onClick={handleNext}
+          disabled={selected === null}
           variant="hero"
           size="lg"
         >
-          Ver resultado
+          {isLast ? "Ver resultado" : "Próxima pergunta"}
+          <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Button>
       </div>
     </div>
