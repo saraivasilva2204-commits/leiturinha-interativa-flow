@@ -53,13 +53,13 @@
 :root {
   --radius: 1rem;
 
-  --background: oklch(0.99 0.005 270);
+  --background: oklch(0.97 0.008 90);
   --foreground: oklch(0.2 0.15 270);
 
-  --card: oklch(1 0 0);
+  --card: oklch(0.98 0.006 90);
   --card-foreground: oklch(0.2 0.15 270);
 
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.98 0.006 90);
   --popover-foreground: oklch(0.2 0.15 270);
 
   --primary: oklch(0.45 0.25 265);
