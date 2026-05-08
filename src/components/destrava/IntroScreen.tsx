@@ -4,11 +4,6 @@ import { BookOpen, Brain, Timer } from "lucide-react";
 export function IntroScreen({ onStart }: { onStart: () => void }) {
   return (
     <div className="animate-slide-up text-center">
-      <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 backdrop-blur px-4 py-1.5 text-xs font-medium text-muted-foreground mb-8">
-        <span className="h-1.5 w-1.5 rounded-full bg-primary-glow animate-pulse" />
-        Treino cognitivo de leitura ativa
-      </div>
-
       <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-semibold leading-[1.05] mb-5">
         Treine sua mente <br />
         através da <span className="text-gradient">leitura</span>
