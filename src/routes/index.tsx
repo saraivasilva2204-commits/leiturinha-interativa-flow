@@ -55,7 +55,7 @@ function Index() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="px-5 sm:px-8 py-5 flex items-center justify-between max-w-5xl mx-auto w-full">
+      <header className="px-6 sm:px-12 py-6 flex items-center justify-between w-full border-b border-border">
         <Logo />
         {phase !== "intro" && (
           <button
@@ -67,11 +67,11 @@ function Index() {
         )}
       </header>
 
-      <main className="flex-1 flex items-center justify-center px-5 sm:px-8 py-8">
-        <section
-          className="w-full max-w-2xl rounded-3xl border border-border bg-card/70 backdrop-blur-xl shadow-card p-6 sm:p-10 md:p-12"
-          aria-live="polite"
-        >
+      <main
+        className="flex-1 flex items-center justify-center px-6 sm:px-12 py-12 w-full"
+        aria-live="polite"
+      >
+        <div className="w-full max-w-3xl">
           {phase === "intro" && <IntroScreen onStart={() => setPhase("reading")} />}
           {phase === "reading" && (
             <ReadingScreen
@@ -101,10 +101,10 @@ function Index() {
               onRestart={restart}
             />
           )}
-        </section>
+        </div>
       </main>
 
-      <footer className="px-5 sm:px-8 py-6 text-center text-xs text-muted-foreground">
+      <footer className="px-6 sm:px-12 py-6 text-center text-xs text-muted-foreground border-t border-border">
         Feito com foco em leitura ativa · DESTRAVAÊ
       </footer>
 
