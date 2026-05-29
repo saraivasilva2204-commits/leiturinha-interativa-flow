@@ -16,12 +16,7 @@ export function Logo({ className = "" }: { className?: string }) {
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          <path
-            d="M8 7h7M8 11h7M8 15h4"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
+          <path d="M8 7h7M8 11h7M8 15h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       </div>
       <div className="flex flex-col leading-none">
