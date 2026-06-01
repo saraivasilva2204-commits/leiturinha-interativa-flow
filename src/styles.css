@@ -39,9 +39,10 @@
   --font-display: "Fraunces", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
 
-  --shadow-soft: 0 10px 40px -10px color-mix(in oklab, var(--primary) 35%, transparent);
-  --shadow-glow: 0 0 60px color-mix(in oklab, var(--primary-glow) 50%, transparent);
-  --shadow-card: 0 20px 50px -20px color-mix(in oklab, var(--primary) 30%, transparent);
+  --shadow-soft: 0 8px 24px -12px color-mix(in oklab, var(--primary) 20%, transparent);
+  --shadow-glow: 0 0 40px color-mix(in oklab, var(--primary-glow) 18%, transparent);
+  --shadow-card: 0 12px 32px -16px color-mix(in oklab, var(--primary) 15%, transparent);
+
 
   --gradient-bg: var(--background);
   --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
