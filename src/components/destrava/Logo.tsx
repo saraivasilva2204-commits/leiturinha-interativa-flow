@@ -1,4 +1,6 @@
-import logo from "@/assets/Copilot_20260529_124344.png";
+import logoAsset from "@/assets/brain-logo.png.asset.json";
+
+const logo = logoAsset.url;
 
 export function Logo({ className = "" }: { className?: string }) {
   return (
