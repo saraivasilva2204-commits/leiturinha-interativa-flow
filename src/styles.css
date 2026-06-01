@@ -39,13 +39,13 @@
   --font-display: "Fraunces", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
 
-  --shadow-soft: 0 10px 40px -10px color-mix(in oklab, var(--primary) 25%, transparent);
-  --shadow-glow: 0 0 60px color-mix(in oklab, var(--primary-glow) 40%, transparent);
+  --shadow-soft: 0 10px 40px -10px color-mix(in oklab, var(--primary) 35%, transparent);
+  --shadow-glow: 0 0 60px color-mix(in oklab, var(--primary-glow) 50%, transparent);
   --shadow-card: 0 20px 50px -20px color-mix(in oklab, var(--primary) 30%, transparent);
 
   --gradient-bg: var(--background);
-  --gradient-primary: var(--primary);
-  --gradient-text: var(--primary);
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  --gradient-text: linear-gradient(135deg, var(--primary), var(--primary-glow));
 
   --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
