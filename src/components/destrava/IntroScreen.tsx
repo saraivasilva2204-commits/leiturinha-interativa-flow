@@ -9,19 +9,7 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
         através da <span className="text-gradient">leitura</span>
       </h1>
 
-      <p className="mx-auto max-w-xl text-lg text-muted-foreground leading-relaxed mb-10">
-        Três textos curtos. Algumas perguntas. Um treino direto de
-        <span className="text-foreground"> memória</span>,
-        <span className="text-foreground"> atenção</span> e
-        <span className="text-foreground"> interpretação</span>.
-      </p>
-
-      <Button
-        size="lg"
-        variant="hero"
-        onClick={onStart}
-        aria-label="Começar exercício de leitura"
-      >
+      <Button size="lg" variant="hero" onClick={onStart} aria-label="Começar exercício de leitura">
         Começar exercício
       </Button>
 
@@ -31,10 +19,7 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
           { icon: Brain, title: "5 perguntas", desc: "Memória e interpretação" },
           { icon: Timer, title: "Cronometrado", desc: "Tempo medido por texto" },
         ].map(({ icon: Icon, title, desc }) => (
-          <div
-            key={title}
-            className="rounded-2xl border border-border bg-card/50 backdrop-blur px-4 py-5 text-left"
-          >
+          <div key={title} className="rounded-2xl border border-border bg-card/50 backdrop-blur px-4 py-5 text-left">
             <Icon className="h-5 w-5 text-primary-glow mb-3" aria-hidden="true" />
             <p className="font-medium text-foreground text-sm">{title}</p>
             <p className="text-xs text-muted-foreground mt-0.5">{desc}</p>
