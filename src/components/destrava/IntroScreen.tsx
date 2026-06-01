@@ -13,10 +13,9 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
       </Button>
 
       <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
-        {[{ title: "3 textos" }, { title: "5 perguntas" }, { title: "Cronometrado" }].map(({ title, desc }) => (
+        {[{ title: "3 textos" }, { title: "5 perguntas" }, { title: "Cronometrado" }].map(({ title }) => (
           <div key={title} className="rounded-2xl border border-border bg-card/50 backdrop-blur px-4 py-5 text-left">
             <p className="font-medium text-foreground text-sm">{title}</p>
-            <p className="text-xs text-muted-foreground mt-0.5">{desc}</p>
           </div>
         ))}
       </div>
