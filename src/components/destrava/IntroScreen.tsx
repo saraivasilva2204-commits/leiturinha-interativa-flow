@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { BookOpen, Brain, Timer } from "lucide-react";
 
 export function IntroScreen({ onStart }: { onStart: () => void }) {
   return (
