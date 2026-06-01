@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { MessageCircle, X, Send, Sparkles } from "lucide-react";
+import { MessageCircle, X, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import mascotAsset from "@/assets/mascot-head.png.asset.json";
 
 type Msg = { role: "user" | "bot"; text: string };
 
@@ -91,8 +92,12 @@ export function Chatbot() {
           className="animate-scale-in fixed bottom-24 right-5 z-50 w-[min(calc(100vw-2.5rem),22rem)] h-[28rem] rounded-3xl border border-border bg-card shadow-card flex flex-col overflow-hidden"
         >
           <header className="px-4 py-3 border-b border-border flex items-center gap-2.5 bg-gradient-primary">
-            <div className="h-8 w-8 rounded-full bg-primary-foreground/15 backdrop-blur flex items-center justify-center">
-              <Sparkles className="h-4 w-4 text-primary-foreground" />
+            <div className="h-9 w-9 rounded-full bg-primary-foreground/15 backdrop-blur flex items-center justify-center overflow-hidden ring-1 ring-primary-foreground/30 shadow-[0_0_12px_rgba(177,77,255,0.6)]">
+              <img
+                src={mascotAsset.url}
+                alt="Mascote DESTRAVAÊ"
+                className="h-full w-full object-cover object-center scale-110"
+              />
             </div>
             <div>
               <p className="text-sm font-medium text-primary-foreground leading-tight">
