@@ -53,66 +53,67 @@
 :root {
   --radius: 0.5rem;
 
-  --background: #050505;
-  --foreground: #FFFFFF;
+  --background: #FFFFFF;
+  --foreground: #000000;
 
-  --card: #12121A;
-  --card-foreground: #FFFFFF;
+  --card: #F8F9FA;
+  --card-foreground: #000000;
 
-  --popover: #12121A;
-  --popover-foreground: #FFFFFF;
+  --popover: #FFFFFF;
+  --popover-foreground: #000000;
 
   --primary: #8A2BE2;
   --primary-foreground: #FFFFFF;
   --primary-glow: #B14DFF;
 
-  --secondary: #1A1A2E;
-  --secondary-foreground: #FFFFFF;
+  --secondary: #F1F0F5;
+  --secondary-foreground: #000000;
 
-  --muted: #1A1A1A;
-  --muted-foreground: #BDBDBD;
+  --muted: #F4F4F6;
+  --muted-foreground: #555555;
 
-  --accent: #2D1B4E;
-  --accent-foreground: #FFFFFF;
+  --accent: #F3EBFC;
+  --accent-foreground: #4A1A8A;
 
-  --lavender: #3D2B5E;
+  --lavender: #EADCFB;
 
-  --destructive: #FF4444;
+  --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
 
-  --success: #22C55E;
-  --success-foreground: #050505;
+  --success: #16A34A;
+  --success-foreground: #FFFFFF;
 
-  --border: #8A2BE233;
-  --input: #8A2BE226;
-  --ring: #B14DFF;
+  --border: #8A2BE21F;
+  --input: #8A2BE21A;
+  --ring: #8A2BE2;
 }
 
 .dark {
-  --background: #020205;
-  --foreground: #FFFFFF;
-  --card: #0E0E14;
-  --card-foreground: #FFFFFF;
-  --popover: #0E0E14;
-  --popover-foreground: #FFFFFF;
-  --primary: #9B3DF5;
+  --background: #FFFFFF;
+  --foreground: #000000;
+  --card: #F8F9FA;
+  --card-foreground: #000000;
+  --popover: #FFFFFF;
+  --popover-foreground: #000000;
+  --primary: #8A2BE2;
   --primary-foreground: #FFFFFF;
-  --primary-glow: #C56FFF;
-  --secondary: #151528;
-  --secondary-foreground: #FFFFFF;
-  --muted: #151515;
-  --muted-foreground: #AAAAAA;
-  --accent: #251845;
-  --accent-foreground: #FFFFFF;
-  --lavender: #352560;
-  --destructive: #FF5555;
+  --primary-glow: #B14DFF;
+  --secondary: #F1F0F5;
+  --secondary-foreground: #000000;
+  --muted: #F4F4F6;
+  --muted-foreground: #555555;
+  --accent: #F3EBFC;
+  --accent-foreground: #4A1A8A;
+  --lavender: #EADCFB;
+  --destructive: #DC2626;
   --destructive-foreground: #FFFFFF;
-  --success: #33DD66;
-  --success-foreground: #020205;
-  --border: #9B3DF533;
-  --input: #9B3DF526;
-  --ring: #C56FFF;
+  --success: #16A34A;
+  --success-foreground: #FFFFFF;
+  --border: #8A2BE21F;
+  --input: #8A2BE21A;
+  --ring: #8A2BE2;
 }
+
 
 @layer base {
   * {
