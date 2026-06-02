@@ -57,14 +57,6 @@ function Index() {
     <div className="min-h-screen flex flex-col">
       <header className="px-6 sm:px-12 py-6 flex items-center justify-between w-full border-b border-border">
         <Logo />
-        {phase !== "intro" && (
-          <button
-            onClick={restart}
-            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Reiniciar
-          </button>
-        )}
       </header>
 
       <main
