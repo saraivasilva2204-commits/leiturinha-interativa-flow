@@ -96,6 +96,14 @@ function Index() {
         </div>
       </main>
 
+      {phase !== "intro" && (
+        <button
+          onClick={restart}
+          className="fixed bottom-5 right-5 z-40 text-xs text-muted-foreground hover:text-foreground transition-colors bg-card/80 backdrop-blur border border-border rounded-full px-3 py-1.5 shadow-sm"
+        >
+          Reiniciar
+        </button>
+      )}
 
       <Chatbot />
     </div>
