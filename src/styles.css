@@ -44,7 +44,7 @@
   --shadow-card: 0 12px 32px -16px color-mix(in oklab, var(--primary) 15%, transparent);
 
 
-  --gradient-bg: linear-gradient(180deg, #FFFFFF 0%, #FAF8FF 60%, #F5F0FF 100%);
+  --gradient-bg: linear-gradient(180deg, #FFFFFF 0%, #F8F5FF 60%, #F3EEFF 100%);
   --gradient-primary: linear-gradient(135deg, var(--primary), var(--primary-glow));
   --gradient-text: linear-gradient(135deg, var(--primary), var(--primary-glow));
 
