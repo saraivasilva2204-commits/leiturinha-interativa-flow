@@ -104,9 +104,6 @@ function Index() {
         </div>
       </main>
 
-      <footer className="px-6 sm:px-12 py-6 text-center text-xs text-muted-foreground border-t border-border">
-        Feito com foco em leitura ativa · DESTRAVAÊ
-      </footer>
 
       <Chatbot />
     </div>
