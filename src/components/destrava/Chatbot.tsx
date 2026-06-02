@@ -88,8 +88,8 @@ export function Chatbot() {
       {open && (
         <div
           role="dialog"
-          aria-label="Assistente DESTRAVAÊ"
-          className="animate-scale-in fixed bottom-24 right-5 z-50 w-[min(calc(100vw-2.5rem),22rem)] h-[28rem] rounded-3xl border border-border bg-card shadow-card flex flex-col overflow-hidden"
+          aria-label="Dé DESTRAVAÊ"
+          className="animate-scale-in fixed top-20 right-5 z-50 w-[min(calc(100vw-2.5rem),22rem)] h-[28rem] rounded-3xl border border-border bg-card shadow-card flex flex-col overflow-hidden"
         >
           <header className="px-4 py-3 border-b border-border flex items-center gap-2.5 bg-gradient-primary">
             <div className="h-9 w-9 rounded-full bg-primary-foreground/15 backdrop-blur flex items-center justify-center overflow-hidden ring-1 ring-primary-foreground/30 shadow-[0_0_12px_rgba(177,77,255,0.6)]">
@@ -101,7 +101,7 @@ export function Chatbot() {
             </div>
             <div>
               <p className="text-sm font-medium text-primary-foreground leading-tight">
-                Assistente
+                Dé
               </p>
               <p className="text-[10px] uppercase tracking-wider text-primary-foreground/70">
                 Online
