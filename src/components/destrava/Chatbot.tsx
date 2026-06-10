@@ -80,7 +80,7 @@ export function Chatbot() {
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? "Fechar Dé" : "Abrir Dé"}
         aria-expanded={open}
-        className="fixed top-5 right-5 z-50 h-14 w-14 rounded-full bg-[#EDE9FE] text-[#8B3DFF] shadow-[0_4px_20px_-4px_rgba(139,61,255,0.25)] flex items-center justify-center transition-transform hover:scale-105 active:scale-95 border border-[#D6BCFA]/60"
+        className="fixed top-5 right-5 z-50 h-14 w-14 rounded-full bg-gradient-primary text-primary-foreground shadow-glow flex items-center justify-center transition-transform hover:scale-105 active:scale-95"
       >
         {open ? <X className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
       </button>
