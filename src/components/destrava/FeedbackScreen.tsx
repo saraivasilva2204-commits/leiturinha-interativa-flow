@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { RotateCcw, Trophy, Clock, Brain, Lightbulb, Timer } from "lucide-react";
+import { RotateCcw, Trophy, Clock, Brain, Lightbulb, Timer, Frown } from "lucide-react";
 import type { Question } from "@/lib/exercise";
 import { motivationalMessage, analyzePerformance } from "@/lib/exercise";
 
