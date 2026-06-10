@@ -55,7 +55,7 @@ function Index() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="px-6 sm:px-12 py-6 flex items-center justify-between w-full border-b border-border">
+      <header className="px-6 sm:px-12 py-6 flex items-center justify-between w-full border-b border-border bg-background">
         <Logo />
       </header>
 
