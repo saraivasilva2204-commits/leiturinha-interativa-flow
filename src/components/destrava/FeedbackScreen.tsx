@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { RotateCcw, Trophy, Clock, Brain, Lightbulb, Timer } from "lucide-react";
+import { RotateCcw, Trophy, Clock, Brain, Lightbulb, Timer, Frown } from "lucide-react";
 import type { Question } from "@/lib/exercise";
 import { motivationalMessage, analyzePerformance } from "@/lib/exercise";
 
@@ -37,15 +37,30 @@ export function FeedbackScreen({
     answerTimes,
   });
 
+  const isPoor = score / total < 0.5;
+
   return (
     <div className="animate-slide-up">
       <div className="text-center mb-10">
-        <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-primary shadow-glow mb-5">
-          <Trophy className="h-7 w-7 text-primary-foreground" aria-hidden="true" />
-        </div>
-        <h2 className="font-display text-4xl sm:text-5xl mb-3">
-          {score} de {total} <span className="text-gradient">acertos</span>
-        </h2>
+        {isPoor ? (
+          <>
+            <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 shadow-md mb-5">
+              <Frown className="h-7 w-7 text-slate-500" aria-hidden="true" />
+            </div>
+            <h2 className="font-display text-4xl sm:text-5xl mb-3 text-slate-700">
+              {score} de {total} <span className="text-slate-400">acertos</span>
+            </h2>
+          </>
+        ) : (
+          <>
+            <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-primary shadow-glow mb-5">
+              <Trophy className="h-7 w-7 text-primary-foreground" aria-hidden="true" />
+            </div>
+            <h2 className="font-display text-4xl sm:text-5xl mb-3">
+              {score} de {total} <span className="text-gradient">acertos</span>
+            </h2>
+          </>
+        )}
         <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
           {motivationalMessage(score, total)}
         </p>
