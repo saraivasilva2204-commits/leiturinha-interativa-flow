@@ -50,21 +50,30 @@ export function QuestionsScreen({ questions, onSubmit }: Props) {
 
   return (
     <div className="animate-fade-in">
-      <div className="flex items-center justify-between mb-6">
-        <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-          Pergunta {index + 1} / {questions.length}
-        </span>
-        <div className="flex gap-1.5" aria-hidden="true">
-          {questions.map((_, i) => (
-            <span
-              key={i}
-              className={`h-1.5 w-6 rounded-full transition-all duration-500 ${
-                i <= index ? "bg-gradient-primary" : "bg-muted"
-              }`}
-            />
-          ))}
+      <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
+        <div className="flex items-center gap-3 flex-wrap">
+          <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            Pergunta {index + 1} / {questions.length}
+          </span>
+          <div className="flex gap-1.5" aria-hidden="true">
+            {questions.map((_, i) => (
+              <span
+                key={i}
+                className={`h-1.5 w-6 rounded-full transition-all duration-500 ${
+                  i <= index ? "bg-gradient-primary" : "bg-muted"
+                }`}
+              />
+            ))}
+          </div>
         </div>
+        <CountdownTimer
+          duration={30}
+          storageKey={`destrava:question:${index}`}
+          onComplete={handleTimeout}
+          label="Resposta"
+        />
       </div>
+
 
       <div
         className="h-1 w-full bg-muted rounded-full overflow-hidden mb-10"
