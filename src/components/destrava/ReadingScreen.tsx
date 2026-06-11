@@ -1,12 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import type { StoryItem } from "@/lib/exercise";
+import { CountdownTimer } from "./CountdownTimer";
 
 type Props = {
   stories: StoryItem[];
   onFinish: (timesMs: number[]) => void;
 };
+
 
 export function ReadingScreen({ stories, onFinish }: Props) {
   const [index, setIndex] = useState(0);
