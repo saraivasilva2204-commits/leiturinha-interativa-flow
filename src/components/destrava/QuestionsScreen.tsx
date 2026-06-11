@@ -26,19 +26,27 @@ export function QuestionsScreen({ questions, onSubmit }: Props) {
   const isLast = index === questions.length - 1;
   const progress = ((index + 1) / questions.length) * 100;
 
-  const handleNext = () => {
-    if (selected === null) return;
-    const elapsed = performance.now() - startRef.current;
-    const newAnswers = [...answers, selected];
-    const newTimes = [...times, elapsed];
-    setAnswers(newAnswers);
-    setTimes(newTimes);
-    if (isLast) {
-      onSubmit(newAnswers, newTimes);
-    } else {
-      setIndex(index + 1);
-    }
-  };
+  const handleNext = useCallback(
+    (forced = false) => {
+      if (!forced && selected === null) return;
+      const elapsed = performance.now() - startRef.current;
+      const answer = selected ?? -1;
+      const newAnswers = [...answers, answer];
+      const newTimes = [...times, elapsed];
+      setAnswers(newAnswers);
+      setTimes(newTimes);
+      if (isLast) {
+        onSubmit(newAnswers, newTimes);
+      } else {
+        setIndex(index + 1);
+      }
+    },
+    [selected, answers, times, isLast, onSubmit, index],
+  );
+
+  const handleTimeout = useCallback(() => handleNext(true), [handleNext]);
+
+
 
   return (
     <div className="animate-fade-in">
