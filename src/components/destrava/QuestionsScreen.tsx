@@ -121,7 +121,7 @@ export function QuestionsScreen({ questions, onSubmit }: Props) {
           Selecione uma opção para avançar.
         </p>
         <Button
-          onClick={handleNext}
+          onClick={() => handleNext(false)}
           disabled={selected === null}
           variant="hero"
           size="lg"
