@@ -1,6 +1,4 @@
-import logoAsset from "@/assets/brain-logo.png.asset.json";
-
-const logo = logoAsset.url;
+import logo from "@/assets/brain-logo-v2.png";
 
 export function Logo({ className = "", light = false }: { className?: string; light?: boolean }) {
   return (
