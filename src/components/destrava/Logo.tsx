@@ -1,4 +1,4 @@
-import logo from "@/assets/brain-logo-v2.png";
+import logo from "@/assets/brain-logo-v3.png";
 
 export function Logo({ className = "", light = false }: { className?: string; light?: boolean }) {
   return (
