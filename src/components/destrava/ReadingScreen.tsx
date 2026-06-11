@@ -1,12 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import type { StoryItem } from "@/lib/exercise";
+import { CountdownTimer } from "./CountdownTimer";
 
 type Props = {
   stories: StoryItem[];
   onFinish: (timesMs: number[]) => void;
 };
+
 
 export function ReadingScreen({ stories, onFinish }: Props) {
   const [index, setIndex] = useState(0);
@@ -17,7 +19,7 @@ export function ReadingScreen({ stories, onFinish }: Props) {
     startRef.current = performance.now();
   }, [index]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     const elapsed = performance.now() - startRef.current;
     const newTimes = [...times, elapsed];
     setTimes(newTimes);
@@ -26,29 +28,39 @@ export function ReadingScreen({ stories, onFinish }: Props) {
     } else {
       setIndex(index + 1);
     }
-  };
+  }, [index, stories.length, times, onFinish]);
 
   const story = stories[index];
   const isLast = index === stories.length - 1;
   const progress = ((index + 1) / stories.length) * 100;
 
+
   return (
     <div className="animate-fade-in">
-      <div className="flex items-center justify-between mb-6">
-        <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-          Texto {index + 1} / {stories.length}
-        </span>
-        <div className="flex gap-1.5" aria-hidden="true">
-          {stories.map((_, i) => (
-            <span
-              key={i}
-              className={`h-1.5 w-8 rounded-full transition-all duration-500 ${
-                i <= index ? "bg-gradient-primary" : "bg-muted"
-              }`}
-            />
-          ))}
+      <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
+        <div className="flex items-center gap-3 flex-wrap">
+          <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            Texto {index + 1} / {stories.length}
+          </span>
+          <div className="flex gap-1.5" aria-hidden="true">
+            {stories.map((_, i) => (
+              <span
+                key={i}
+                className={`h-1.5 w-8 rounded-full transition-all duration-500 ${
+                  i <= index ? "bg-gradient-primary" : "bg-muted"
+                }`}
+              />
+            ))}
+          </div>
         </div>
+        <CountdownTimer
+          duration={60}
+          storageKey={`destrava:reading:${index}`}
+          onComplete={handleNext}
+          label="Leitura"
+        />
       </div>
+
 
       <div
         className="h-1 w-full bg-muted rounded-full overflow-hidden mb-10"

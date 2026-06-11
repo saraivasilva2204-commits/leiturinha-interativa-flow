@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 import type { Question } from "@/lib/exercise";
+import { CountdownTimer } from "./CountdownTimer";
+
 
 type Props = {
   questions: Question[];
@@ -24,37 +26,54 @@ export function QuestionsScreen({ questions, onSubmit }: Props) {
   const isLast = index === questions.length - 1;
   const progress = ((index + 1) / questions.length) * 100;
 
-  const handleNext = () => {
-    if (selected === null) return;
-    const elapsed = performance.now() - startRef.current;
-    const newAnswers = [...answers, selected];
-    const newTimes = [...times, elapsed];
-    setAnswers(newAnswers);
-    setTimes(newTimes);
-    if (isLast) {
-      onSubmit(newAnswers, newTimes);
-    } else {
-      setIndex(index + 1);
-    }
-  };
+  const handleNext = useCallback(
+    (forced = false) => {
+      if (!forced && selected === null) return;
+      const elapsed = performance.now() - startRef.current;
+      const answer = selected ?? -1;
+      const newAnswers = [...answers, answer];
+      const newTimes = [...times, elapsed];
+      setAnswers(newAnswers);
+      setTimes(newTimes);
+      if (isLast) {
+        onSubmit(newAnswers, newTimes);
+      } else {
+        setIndex(index + 1);
+      }
+    },
+    [selected, answers, times, isLast, onSubmit, index],
+  );
+
+  const handleTimeout = useCallback(() => handleNext(true), [handleNext]);
+
+
 
   return (
     <div className="animate-fade-in">
-      <div className="flex items-center justify-between mb-6">
-        <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-          Pergunta {index + 1} / {questions.length}
-        </span>
-        <div className="flex gap-1.5" aria-hidden="true">
-          {questions.map((_, i) => (
-            <span
-              key={i}
-              className={`h-1.5 w-6 rounded-full transition-all duration-500 ${
-                i <= index ? "bg-gradient-primary" : "bg-muted"
-              }`}
-            />
-          ))}
+      <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
+        <div className="flex items-center gap-3 flex-wrap">
+          <span className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            Pergunta {index + 1} / {questions.length}
+          </span>
+          <div className="flex gap-1.5" aria-hidden="true">
+            {questions.map((_, i) => (
+              <span
+                key={i}
+                className={`h-1.5 w-6 rounded-full transition-all duration-500 ${
+                  i <= index ? "bg-gradient-primary" : "bg-muted"
+                }`}
+              />
+            ))}
+          </div>
         </div>
+        <CountdownTimer
+          duration={30}
+          storageKey={`destrava:question:${index}`}
+          onComplete={handleTimeout}
+          label="Resposta"
+        />
       </div>
+
 
       <div
         className="h-1 w-full bg-muted rounded-full overflow-hidden mb-10"
@@ -111,7 +130,7 @@ export function QuestionsScreen({ questions, onSubmit }: Props) {
           Selecione uma opção para avançar.
         </p>
         <Button
-          onClick={handleNext}
+          onClick={() => handleNext(false)}
           disabled={selected === null}
           variant="hero"
           size="lg"
