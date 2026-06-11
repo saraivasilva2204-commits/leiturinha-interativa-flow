@@ -2,13 +2,25 @@ import logoAsset from "@/assets/brain-logo.png.asset.json";
 
 const logo = logoAsset.url;
 
-export function Logo({ className = "" }: { className?: string }) {
+export function Logo({ className = "", light = false }: { className?: string; light?: boolean }) {
   return (
-    <img
-      src={logo}
-      alt="DESTRAVAÊ"
-      className={`h-14 w-14 sm:h-16 sm:w-16 object-contain ${className}`}
-    />
+    <div className={`flex items-center gap-4 ${className}`}>
+      <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-2xl border-2 border-white/90 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.15)] overflow-hidden flex-shrink-0">
+        <img src={logo} alt="DESTRAVAÊ" className="h-full w-full object-contain" />
+      </div>
+      <div className="flex flex-col leading-none">
+        <span className={`font-display text-2xl sm:text-3xl font-semibold tracking-tight ${light ? "text-white" : "text-foreground"}`}>
+          DESTRAVAÊ
+        </span>
+        <div className="flex items-center gap-2 mt-1.5">
+          <span className={`text-[10px] uppercase tracking-[0.2em] font-medium ${light ? "text-white/75" : "text-muted-foreground"}`}>Leia</span>
+          <span className={`w-1 h-1 rounded-full ${light ? "bg-white/40" : "bg-muted-foreground/40"}`} />
+          <span className={`text-[10px] uppercase tracking-[0.2em] font-medium ${light ? "text-white/75" : "text-muted-foreground"}`}>Pense</span>
+          <span className={`w-1 h-1 rounded-full ${light ? "bg-white/40" : "bg-muted-foreground/40"}`} />
+          <span className={`text-[10px] uppercase tracking-[0.2em] font-medium ${light ? "text-white/75" : "text-muted-foreground"}`}>Destrave</span>
+        </div>
+      </div>
+    </div>
   );
 }
 
