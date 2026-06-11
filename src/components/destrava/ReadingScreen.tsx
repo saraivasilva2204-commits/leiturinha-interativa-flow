@@ -19,7 +19,7 @@ export function ReadingScreen({ stories, onFinish }: Props) {
     startRef.current = performance.now();
   }, [index]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     const elapsed = performance.now() - startRef.current;
     const newTimes = [...times, elapsed];
     setTimes(newTimes);
@@ -28,11 +28,12 @@ export function ReadingScreen({ stories, onFinish }: Props) {
     } else {
       setIndex(index + 1);
     }
-  };
+  }, [index, stories.length, times, onFinish]);
 
   const story = stories[index];
   const isLast = index === stories.length - 1;
   const progress = ((index + 1) / stories.length) * 100;
+
 
   return (
     <div className="animate-fade-in">
