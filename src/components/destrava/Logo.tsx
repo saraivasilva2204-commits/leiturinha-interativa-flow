@@ -3,9 +3,7 @@ import logo from "@/assets/brain-logo-v2.png";
 export function Logo({ className = "", light = false }: { className?: string; light?: boolean }) {
   return (
     <div className={`flex items-center gap-4 ${className}`}>
-      <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-2xl border-2 border-white/90 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.15)] overflow-hidden flex-shrink-0">
-        <img src={logo} alt="DESTRAVAÊ" className="h-full w-full object-contain" />
-      </div>
+      <img src={logo} alt="DESTRAVAÊ" className="h-14 w-14 sm:h-16 sm:w-16 object-contain flex-shrink-0" />
       <div className="flex flex-col leading-none">
         <span className={`font-display text-2xl sm:text-3xl font-semibold tracking-tight ${light ? "text-white" : "text-foreground"}`}>
           DESTRAVAÊ
