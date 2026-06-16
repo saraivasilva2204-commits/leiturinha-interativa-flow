@@ -182,24 +182,48 @@
     background: linear-gradient(180deg, #F6ECD9 0%, #F1E2C4 100%);
   }
 
-  /* Accessibility: dark/night theme */
+  /* Accessibility: dark/night theme — Notion/Linear/Discord inspired */
   html[data-theme="dark"] {
-    --background: #0E0E12;
-    --foreground: #F2F2F5;
-    --card: #1A1A22;
-    --card-foreground: #F2F2F5;
-    --popover: #15151B;
-    --popover-foreground: #F2F2F5;
-    --muted: #1F1F28;
-    --muted-foreground: #B5B5C2;
+    --background: #0F0A1F;
+    --foreground: #FFFFFF;
+    --card: #1F1B2E;
+    --card-foreground: #FFFFFF;
+    --popover: #1A1035;
+    --popover-foreground: #FFFFFF;
+    --secondary: #1A1035;
+    --secondary-foreground: #FFFFFF;
+    --muted: #1A1035;
+    --muted-foreground: #D1D5DB;
     --accent: #2A1A47;
     --accent-foreground: #E4D2FF;
-    --border: #FFFFFF1F;
-    --input: #FFFFFF14;
+    --primary: #A855F7;
+    --primary-foreground: #FFFFFF;
+    --primary-glow: #C084FC;
+    --border: #A855F733;
+    --input: #A855F71F;
+    --ring: #C084FC;
   }
   html[data-theme="dark"] body {
-    background: linear-gradient(180deg, #0E0E12 0%, #15101F 100%);
+    background:
+      radial-gradient(1200px 600px at 80% -10%, #2A1A47 0%, transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, #1A1035 0%, transparent 55%),
+      linear-gradient(180deg, #0F0A1F 0%, #0B0718 100%);
+    color: var(--color-foreground);
   }
+  /* Hero title legibility on dark */
+  html[data-theme="dark"] h1,
+  html[data-theme="dark"] h2,
+  html[data-theme="dark"] h3 {
+    color: #FFFFFF;
+    text-shadow: 0 1px 24px rgba(168, 85, 247, 0.18);
+  }
+  /* Refined card surface on dark */
+  html[data-theme="dark"] .shadow-card {
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 12px 32px -16px rgba(0, 0, 0, 0.6);
+  }
+}
 
   h1, h2, h3 {
     font-family: var(--font-display);
