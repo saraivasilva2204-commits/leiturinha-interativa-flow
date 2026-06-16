@@ -53,6 +53,10 @@ export const Route = createRootRoute({
         rel: "stylesheet",
         href: appCss,
       },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.cdnfonts.com/css/open-dyslexic",
+      },
     ],
   }),
   shellComponent: RootShell,
