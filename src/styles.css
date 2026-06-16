@@ -123,6 +123,7 @@
 
   html {
     scroll-behavior: smooth;
+    font-size: calc(16px * var(--a11y-font-scale, 1));
   }
 
   body {
@@ -132,6 +133,72 @@
     font-feature-settings: "ss01", "cv11";
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* Accessibility: dyslexic-friendly font */
+  html[data-font="dyslexic"],
+  html[data-font="dyslexic"] body,
+  html[data-font="dyslexic"] h1,
+  html[data-font="dyslexic"] h2,
+  html[data-font="dyslexic"] h3,
+  html[data-font="dyslexic"] h4,
+  html[data-font="dyslexic"] p,
+  html[data-font="dyslexic"] span,
+  html[data-font="dyslexic"] button,
+  html[data-font="dyslexic"] a,
+  html[data-font="dyslexic"] li,
+  html[data-font="dyslexic"] label,
+  html[data-font="dyslexic"] input,
+  html[data-font="dyslexic"] textarea {
+    font-family: "Open Dyslexic", "OpenDyslexic", Comic Sans MS, sans-serif !important;
+    letter-spacing: 0.01em;
+  }
+
+  /* Accessibility: line/word spacing */
+  html[data-spacing="relaxed"] body {
+    line-height: 1.7;
+    word-spacing: 0.05em;
+  }
+  html[data-spacing="loose"] body {
+    line-height: 2;
+    word-spacing: 0.12em;
+    letter-spacing: 0.02em;
+  }
+
+  /* Accessibility: sepia theme */
+  html[data-theme="sepia"] {
+    --background: #F6ECD9;
+    --foreground: #3B2A14;
+    --card: #F1E2C4;
+    --card-foreground: #3B2A14;
+    --popover: #F6ECD9;
+    --popover-foreground: #3B2A14;
+    --muted: #ECDDBE;
+    --muted-foreground: #6B5435;
+    --border: #C9B58A66;
+    --input: #C9B58A33;
+  }
+  html[data-theme="sepia"] body {
+    background: linear-gradient(180deg, #F6ECD9 0%, #F1E2C4 100%);
+  }
+
+  /* Accessibility: dark/night theme */
+  html[data-theme="dark"] {
+    --background: #0E0E12;
+    --foreground: #F2F2F5;
+    --card: #1A1A22;
+    --card-foreground: #F2F2F5;
+    --popover: #15151B;
+    --popover-foreground: #F2F2F5;
+    --muted: #1F1F28;
+    --muted-foreground: #B5B5C2;
+    --accent: #2A1A47;
+    --accent-foreground: #E4D2FF;
+    --border: #FFFFFF1F;
+    --input: #FFFFFF14;
+  }
+  html[data-theme="dark"] body {
+    background: linear-gradient(180deg, #0E0E12 0%, #15101F 100%);
   }
 
   h1, h2, h3 {
