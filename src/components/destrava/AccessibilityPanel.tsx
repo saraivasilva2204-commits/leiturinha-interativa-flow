@@ -38,12 +38,6 @@ function applySettings(s: Settings) {
   root.dataset.spacing = s.spacing;
   root.dataset.font = s.font;
   root.style.setProperty("--a11y-font-scale", String(s.fontScale));
-  // Sync Tailwind dark variant with our data-theme
-  if (s.theme === "dark") {
-    root.classList.add("dark");
-  } else {
-    root.classList.remove("dark");
-  }
 }
 
 export function AccessibilityPanel() {
