@@ -2,7 +2,7 @@
 @source "../src";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is([data-theme="dark"] *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -89,31 +89,6 @@
   --ring: #8A2BE2;
 }
 
-.dark {
-  --background: #FFFFFF;
-  --foreground: #000000;
-  --card: #F8F9FA;
-  --card-foreground: #000000;
-  --popover: #FFFFFF;
-  --popover-foreground: #000000;
-  --primary: #8A2BE2;
-  --primary-foreground: #FFFFFF;
-  --primary-glow: #B14DFF;
-  --secondary: #F1F0F5;
-  --secondary-foreground: #000000;
-  --muted: #F4F4F6;
-  --muted-foreground: #555555;
-  --accent: #F3EBFC;
-  --accent-foreground: #4A1A8A;
-  --lavender: #EADCFB;
-  --destructive: #DC2626;
-  --destructive-foreground: #FFFFFF;
-  --success: #16A34A;
-  --success-foreground: #FFFFFF;
-  --border: #8A2BE21F;
-  --input: #8A2BE21A;
-  --ring: #8A2BE2;
-}
 
 
 @layer base {
@@ -182,47 +157,6 @@
     background: linear-gradient(180deg, #F6ECD9 0%, #F1E2C4 100%);
   }
 
-  /* Accessibility: dark/night theme — Notion/Linear/Discord inspired */
-  html[data-theme="dark"] {
-    --background: #0F0A1F;
-    --foreground: #FFFFFF;
-    --card: #1F1B2E;
-    --card-foreground: #FFFFFF;
-    --popover: #1A1035;
-    --popover-foreground: #FFFFFF;
-    --secondary: #1A1035;
-    --secondary-foreground: #FFFFFF;
-    --muted: #1A1035;
-    --muted-foreground: #D1D5DB;
-    --accent: #2A1A47;
-    --accent-foreground: #E4D2FF;
-    --primary: #A855F7;
-    --primary-foreground: #FFFFFF;
-    --primary-glow: #C084FC;
-    --border: #A855F733;
-    --input: #A855F71F;
-    --ring: #C084FC;
-  }
-  html[data-theme="dark"] body {
-    background:
-      radial-gradient(1200px 600px at 80% -10%, #2A1A47 0%, transparent 60%),
-      radial-gradient(900px 500px at -10% 110%, #1A1035 0%, transparent 55%),
-      linear-gradient(180deg, #0F0A1F 0%, #0B0718 100%);
-    color: var(--color-foreground);
-  }
-  /* Hero title legibility on dark */
-  html[data-theme="dark"] h1,
-  html[data-theme="dark"] h2,
-  html[data-theme="dark"] h3 {
-    color: #FFFFFF;
-    text-shadow: 0 1px 24px rgba(168, 85, 247, 0.18);
-  }
-  /* Refined card surface on dark */
-  html[data-theme="dark"] .shadow-card {
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.04) inset,
-      0 12px 32px -16px rgba(0, 0, 0, 0.6);
-  }
 
   h1, h2, h3 {
     font-family: var(--font-display);
@@ -276,6 +210,46 @@
   .animate-scale-in {
     animation: scaleIn 0.4s var(--transition-smooth);
   }
+}
+
+/* Dark mode overrides — must live outside @layer to beat Tailwind :root theme vars */
+html[data-theme="dark"] {
+  --background: #0F0A1F;
+  --foreground: #FFFFFF;
+  --card: #1F1B2E;
+  --card-foreground: #FFFFFF;
+  --popover: #1A1035;
+  --popover-foreground: #FFFFFF;
+  --secondary: #1A1035;
+  --secondary-foreground: #FFFFFF;
+  --muted: #1A1035;
+  --muted-foreground: #D1D5DB;
+  --accent: #2A1A47;
+  --accent-foreground: #E4D2FF;
+  --primary: #A855F7;
+  --primary-foreground: #FFFFFF;
+  --primary-glow: #C084FC;
+  --border: #A855F733;
+  --input: #A855F71F;
+  --ring: #C084FC;
+}
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #2A1A47 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, #1A1035 0%, transparent 55%),
+    linear-gradient(180deg, #0F0A1F 0%, #0B0718 100%);
+  color: var(--color-foreground);
+}
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3 {
+  color: #FFFFFF;
+  text-shadow: 0 1px 24px rgba(168, 85, 247, 0.18);
+}
+html[data-theme="dark"] .shadow-card {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 12px 32px -16px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes fadeIn {
