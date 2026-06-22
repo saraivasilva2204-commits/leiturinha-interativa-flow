@@ -66,12 +66,6 @@ export function QuestionsScreen({ questions, onSubmit }: Props) {
             ))}
           </div>
         </div>
-        <CountdownTimer
-          duration={30}
-          storageKey={`destrava:question:${index}`}
-          onComplete={handleTimeout}
-          label="Resposta"
-        />
       </div>
 
 
