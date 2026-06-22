@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import type { StoryItem } from "@/lib/exercise";
-import { CountdownTimer } from "./CountdownTimer";
 
 type Props = {
   stories: StoryItem[];
@@ -53,12 +52,6 @@ export function ReadingScreen({ stories, onFinish }: Props) {
             ))}
           </div>
         </div>
-        <CountdownTimer
-          duration={60}
-          storageKey={`destrava:reading:${index}`}
-          onComplete={handleNext}
-          label="Leitura"
-        />
       </div>
 
 
