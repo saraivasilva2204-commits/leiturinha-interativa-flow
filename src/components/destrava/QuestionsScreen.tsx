@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 import type { Question } from "@/lib/exercise";
-import { CountdownTimer } from "./CountdownTimer";
+
 
 
 type Props = {
@@ -44,7 +44,7 @@ export function QuestionsScreen({ questions, onSubmit }: Props) {
     [selected, answers, times, isLast, onSubmit, index],
   );
 
-  const handleTimeout = useCallback(() => handleNext(true), [handleNext]);
+  
 
 
 
@@ -66,12 +66,6 @@ export function QuestionsScreen({ questions, onSubmit }: Props) {
             ))}
           </div>
         </div>
-        <CountdownTimer
-          duration={30}
-          storageKey={`destrava:question:${index}`}
-          onComplete={handleTimeout}
-          label="Resposta"
-        />
       </div>
 
 
