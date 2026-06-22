@@ -44,7 +44,7 @@ export function QuestionsScreen({ questions, onSubmit }: Props) {
     [selected, answers, times, isLast, onSubmit, index],
   );
 
-  const handleTimeout = useCallback(() => handleNext(true), [handleNext]);
+  
 
 
 
