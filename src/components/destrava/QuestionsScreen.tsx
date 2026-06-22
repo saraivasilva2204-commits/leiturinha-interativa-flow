@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 import type { Question } from "@/lib/exercise";
-import { CountdownTimer } from "./CountdownTimer";
+
 
 
 type Props = {
