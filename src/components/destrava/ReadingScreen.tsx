@@ -52,12 +52,6 @@ export function ReadingScreen({ stories, onFinish }: Props) {
             ))}
           </div>
         </div>
-        <CountdownTimer
-          duration={60}
-          storageKey={`destrava:reading:${index}`}
-          onComplete={handleNext}
-          label="Leitura"
-        />
       </div>
 
 
