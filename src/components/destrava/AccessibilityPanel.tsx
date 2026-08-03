@@ -113,7 +113,7 @@ export function AccessibilityPanel() {
             </SegBtn>
           </Section>
 
-          <Section icon={<Type className="h-4 w-4" />} label={`Tamanho do texto (${Math.round(settings.fontScale * 100)}%)`}>
+          <Section icon={<Type className="h-4 w-4" />} label={`Zoom\u00A0(${Math.round(settings.fontScale * 100)}%)`}>
             <input
               type="range"
               min={0.9}
