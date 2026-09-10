@@ -6,6 +6,7 @@ import { ReadingScreen } from "@/components/destrava/ReadingScreen";
 import { QuestionsScreen } from "@/components/destrava/QuestionsScreen";
 import { FeedbackScreen } from "@/components/destrava/FeedbackScreen";
 import { AccessibilityPanel } from "@/components/destrava/AccessibilityPanel";
+import { PhaseTransition } from "@/components/destrava/PhaseTransition";
 import {
   generateQuestions,
   generateStories,
@@ -64,6 +65,7 @@ function Index() {
         aria-live="polite"
       >
         <div className="w-full max-w-3xl">
+          <PhaseTransition phaseKey={phase + ":" + seed}>
           {phase === "intro" && <IntroScreen onStart={() => setPhase("reading")} />}
           {phase === "reading" && (
             <ReadingScreen
@@ -93,6 +95,7 @@ function Index() {
               onRestart={restart}
             />
           )}
+          </PhaseTransition>
         </div>
       </main>
 
