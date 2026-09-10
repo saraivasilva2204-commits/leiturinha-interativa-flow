@@ -12,34 +12,32 @@ const EXIT_MS = 180;
  * lift + blur) before the incoming one glides in with staggered children.
  */
 export function PhaseTransition({ phaseKey, children }: Props) {
-  const [shown, setShown] = useState({ key: phaseKey, node: children });
+  const [visibleKey, setVisibleKey] = useState(phaseKey);
   const [leaving, setLeaving] = useState(false);
-  const pending = useRef<{ key: string; node: ReactNode } | null>(null);
+  const nodeRef = useRef<ReactNode>(children);
 
-  // Keep the visible node fresh while the key is unchanged (internal steps).
+  if (phaseKey === visibleKey) {
+    // keep the rendered node fresh for internal steps of the same screen
+    nodeRef.current = children;
+  }
+
   useEffect(() => {
-    if (phaseKey === shown.key) {
-      setShown({ key: phaseKey, node: children });
-      return;
-    }
-    pending.current = { key: phaseKey, node: children };
+    if (phaseKey === visibleKey) return;
     setLeaving(true);
     const t = window.setTimeout(() => {
-      if (pending.current) setShown(pending.current);
-      pending.current = null;
+      setVisibleKey(phaseKey);
       setLeaving(false);
     }, EXIT_MS);
     return () => window.clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phaseKey, children]);
+  }, [phaseKey, visibleKey]);
 
   return (
     <div className="phase-stage">
       <div
-        key={shown.key}
+        key={visibleKey}
         className={leaving ? "phase-leave" : "phase-enter stagger-in"}
       >
-        {shown.node}
+        {nodeRef.current}
       </div>
     </div>
   );
