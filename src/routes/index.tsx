@@ -5,7 +5,6 @@ import { IntroScreen } from "@/components/destrava/IntroScreen";
 import { ReadingScreen } from "@/components/destrava/ReadingScreen";
 import { QuestionsScreen } from "@/components/destrava/QuestionsScreen";
 import { FeedbackScreen } from "@/components/destrava/FeedbackScreen";
-import { Chatbot } from "@/components/destrava/Chatbot";
 import { AccessibilityPanel } from "@/components/destrava/AccessibilityPanel";
 import {
   generateQuestions,
@@ -106,7 +105,6 @@ function Index() {
         </button>
       )}
 
-      <Chatbot />
       <AccessibilityPanel />
     </div>
   );
