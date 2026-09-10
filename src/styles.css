@@ -266,3 +266,75 @@ html[data-theme="dark"] .shadow-card {
   from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
 }
+
+/* ---- Screen transitions (futuristic, subtle) ---- */
+.phase-stage {
+  position: relative;
+  perspective: 1200px;
+}
+
+@keyframes phaseEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes phaseLeave {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.99);
+    filter: blur(5px);
+  }
+}
+
+@keyframes phaseRise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.phase-enter {
+  animation: phaseEnter 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: opacity, transform, filter;
+}
+
+.phase-leave {
+  animation: phaseLeave 0.18s cubic-bezier(0.4, 0, 1, 1) both;
+  pointer-events: none;
+  will-change: opacity, transform, filter;
+}
+
+/* Sequential entrance of the direct children of a screen */
+.stagger-in > * > * {
+  animation: phaseRise 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.stagger-in > * > *:nth-child(1) { animation-delay: 0.04s; }
+.stagger-in > * > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-in > * > *:nth-child(3) { animation-delay: 0.16s; }
+.stagger-in > * > *:nth-child(4) { animation-delay: 0.22s; }
+.stagger-in > * > *:nth-child(n + 5) { animation-delay: 0.28s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .phase-enter,
+  .phase-leave,
+  .stagger-in > * > *,
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-scale-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
