@@ -1,6 +1,6 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
-import faviconAsset from "../assets/favicon-destravae.png.asset.json";
+
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -44,11 +44,11 @@ export const Route = createRootRoute({
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c0730444-aede-48e8-914b-e81592e28962/id-preview-960d0ea8--31e88baa-aa55-44fb-9f5c-b94be36373e8.lovable.app-1777292974994.png" },
     ],
     links: [
-      {
-        rel: "icon",
-        type: "image/png",
-        href: faviconAsset.url,
-      },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/png", sizes: "512x512", href: "/favicon.png" },
+      { rel: "shortcut icon", href: "/favicon.ico" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+
       {
         rel: "stylesheet",
         href: appCss,
