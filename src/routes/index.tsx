@@ -106,7 +106,6 @@ function Index() {
         </button>
       )}
 
-      <Chatbot />
       <AccessibilityPanel />
     </div>
   );
