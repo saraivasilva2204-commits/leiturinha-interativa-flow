@@ -20,13 +20,6 @@ export function questionsFor(passageId: string): BankQuestion[] {
   return QUESTIONS.filter((q) => q.passageId === passageId);
 }
 
-/** Textos já treinados recentemente aparecem por último. */
-function freshnessOrder(passages: Passage[], progress: Progress): Passage[] {
-  const recent = progress.history.slice(-4).map((h) => h.passageId);
-  return [...passages].sort(
-    (a, b) => recent.indexOf(a.id) - recent.indexOf(b.id) * 1 + (recent.includes(a.id) ? 1 : -1),
-  );
-}
 
 export function pickPassage(opts: {
   progress: Progress;
