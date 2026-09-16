@@ -338,3 +338,58 @@ html[data-theme="dark"] .shadow-card {
     filter: none !important;
   }
 }
+
+/* ---- Splash screen ---- */
+.splash-out {
+  animation: splashEnter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.splash-leaving {
+  animation: splashLeave 0.5s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+  pointer-events: none;
+}
+
+.splash-logo {
+  animation: splashLogoPulse 3s ease-in-out infinite;
+}
+
+@keyframes splashEnter {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes splashLeave {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes splashLogoPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 18px rgba(138, 43, 226, 0.35));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 34px rgba(177, 77, 255, 0.55));
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-out,
+  .splash-leaving,
+  .splash-logo {
+    animation: none !important;
+  }
+}
