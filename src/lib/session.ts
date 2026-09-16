@@ -70,4 +70,4 @@ export function buildSession(opts: {
   return { passage, questions: ordered };
 }
 
-export { freshnessOrder };
+

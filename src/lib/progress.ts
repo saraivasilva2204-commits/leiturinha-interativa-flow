@@ -136,9 +136,10 @@ export function weakestSkill(p: Progress): SkillId | null {
   SKILLS.forEach((s) => {
     const acc = accuracyFor(p, s.id);
     if (acc === null) return;
-    if (!worst || acc < worst.acc) worst = { id: s.id, acc };
+    const current: { id: SkillId; acc: number } | null = worst;
+    if (!current || acc < current.acc) worst = { id: s.id, acc };
   });
-  return worst ? worst.id : null;
+  return worst ? (worst as { id: SkillId; acc: number }).id : null;
 }
 
 export function untrainedSkill(p: Progress): SkillId | null {

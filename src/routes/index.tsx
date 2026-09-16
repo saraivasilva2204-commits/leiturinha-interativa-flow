@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Logo } from "@/components/destrava/Logo";
+import { SiteHeader } from "@/components/destrava/SiteHeader";
+import { RecommendedTraining } from "@/components/destrava/RecommendedTraining";
 import { IntroScreen } from "@/components/destrava/IntroScreen";
 import { ReadingScreen } from "@/components/destrava/ReadingScreen";
 import { QuestionsScreen } from "@/components/destrava/QuestionsScreen";
@@ -56,9 +57,7 @@ function Index() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="px-6 sm:px-12 py-6 flex items-center justify-between w-full border-b border-white/20 bg-gradient-primary">
-        <Logo light />
-      </header>
+      <SiteHeader />
 
       <main
         className="flex-1 flex items-center justify-center px-6 sm:px-12 py-12 w-full"
@@ -66,7 +65,12 @@ function Index() {
       >
         <div className="w-full max-w-3xl">
           <PhaseTransition phaseKey={phase + ":" + seed}>
-          {phase === "intro" && <IntroScreen onStart={() => setPhase("reading")} />}
+          {phase === "intro" && (
+            <>
+              <IntroScreen onStart={() => setPhase("reading")} />
+              <RecommendedTraining />
+            </>
+          )}
           {phase === "reading" && (
             <ReadingScreen
               stories={stories}
