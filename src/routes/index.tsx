@@ -9,6 +9,10 @@ import { FeedbackScreen } from "@/components/destrava/FeedbackScreen";
 import { AccessibilityPanel } from "@/components/destrava/AccessibilityPanel";
 import { PhaseTransition } from "@/components/destrava/PhaseTransition";
 import {
+  SplashScreen,
+  useSplashEntered,
+} from "@/components/destrava/SplashScreen";
+import {
   generateQuestions,
   generateStories,
   type Question,
@@ -43,6 +47,7 @@ function Index() {
   const [readingTimes, setReadingTimes] = useState<number[]>([]);
   const [answerTimes, setAnswerTimes] = useState<number[]>([]);
   const [answers, setAnswers] = useState<number[]>([]);
+  const { entered, markEntered } = useSplashEntered();
 
   const stories: StoryItem[] = useMemo(() => generateStories(3), [seed]);
   const questions: Question[] = useMemo(() => generateQuestions(stories), [stories]);
@@ -54,6 +59,14 @@ function Index() {
     setSeed((s) => s + 1);
     setPhase("intro");
   };
+
+  if (entered === null) {
+    return null; // avoid flash while reading sessionStorage
+  }
+
+  if (!entered) {
+    return <SplashScreen onEnter={markEntered} />;
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
