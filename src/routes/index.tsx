@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/destrava/SiteHeader";
-import { RecommendedTraining } from "@/components/destrava/RecommendedTraining";
 import { IntroScreen } from "@/components/destrava/IntroScreen";
 import { ReadingScreen } from "@/components/destrava/ReadingScreen";
 import { QuestionsScreen } from "@/components/destrava/QuestionsScreen";
@@ -79,10 +78,7 @@ function Index() {
         <div className="w-full max-w-3xl">
           <PhaseTransition phaseKey={phase + ":" + seed}>
           {phase === "intro" && (
-            <>
-              <IntroScreen onStart={() => setPhase("reading")} />
-              <RecommendedTraining />
-            </>
+            <IntroScreen onStart={() => setPhase("reading")} />
           )}
           {phase === "reading" && (
             <ReadingScreen
