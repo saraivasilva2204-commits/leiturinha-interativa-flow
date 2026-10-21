@@ -109,6 +109,7 @@ function ResetPasswordPage() {
                 </p>
                 <Link
                   to="/auth"
+                  search={{ redirect: "/" }}
                   className="inline-block text-sm text-primary font-medium hover:underline"
                 >
                   Pedir um novo link
