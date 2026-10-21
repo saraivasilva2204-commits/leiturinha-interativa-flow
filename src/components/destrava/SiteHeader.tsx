@@ -34,6 +34,7 @@ export function SiteHeader() {
           ) : (
             <Link
               to="/auth"
+              search={{ redirect: "/" }}
               className="text-sm font-medium rounded-full bg-white text-primary px-4 py-2 hover:bg-white/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
             >
               Entrar
