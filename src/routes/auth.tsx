@@ -31,6 +31,8 @@ export const Route = createFileRoute("/auth")({
         content:
           "Acesse sua conta do DESTRAVAÊ ou crie uma nova para treinar leitura, memória e interpretação.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: AuthPage,

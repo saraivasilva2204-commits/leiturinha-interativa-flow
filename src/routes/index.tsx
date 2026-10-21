@@ -33,6 +33,8 @@ export const Route = createFileRoute("/")({
         content:
           "Plataforma educativa que estimula leitura ativa, memória e interpretação textual.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Index,

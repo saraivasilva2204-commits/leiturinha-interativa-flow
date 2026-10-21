@@ -40,8 +40,6 @@ export const Route = createRootRoute({
       { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "destravae" },
       { name: "twitter:description", content: "Destravaê Mind Boost is an interactive educational web app that enhances reading comprehension, memory, and textual interpretation." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c0730444-aede-48e8-914b-e81592e28962/id-preview-960d0ea8--31e88baa-aa55-44fb-9f5c-b94be36373e8.lovable.app-1777292974994.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c0730444-aede-48e8-914b-e81592e28962/id-preview-960d0ea8--31e88baa-aa55-44fb-9f5c-b94be36373e8.lovable.app-1777292974994.png" },
     ],
     links: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
@@ -66,7 +64,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>

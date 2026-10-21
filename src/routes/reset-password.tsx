@@ -17,6 +17,8 @@ export const Route = createFileRoute("/reset-password")({
         property: "og:description",
         content: "Defina uma nova senha para sua conta do DESTRAVAÊ.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: ResetPasswordPage,
@@ -25,6 +27,7 @@ export const Route = createFileRoute("/reset-password")({
 function ResetPasswordPage() {
   const navigate = useNavigate();
   const [ready, setReady] = useState(false);
+  const [checking, setChecking] = useState(true);
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [busy, setBusy] = useState(false);
@@ -32,16 +35,33 @@ function ResetPasswordPage() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    // The recovery link lands here with type=recovery in the URL hash.
-    const hash = window.location.hash;
-    if (hash.includes("type=recovery")) {
-      setReady(true);
-      return;
-    }
+    let active = true;
+    const params = new URLSearchParams(window.location.hash.slice(1));
+    const isRecovery = params.get("type") === "recovery";
+    const validateSession = async () => {
+      try {
+        const { data, error } = await supabase.auth.getUser();
+        if (active) setReady(!error && Boolean(data.user));
+      } catch {
+        if (active) setReady(false);
+      } finally {
+        if (active) setChecking(false);
+      }
+    };
     const { data: sub } = supabase.auth.onAuthStateChange((event) => {
-      if (event === "PASSWORD_RECOVERY") setReady(true);
+      // Defer auth calls until the auth event has finished processing.
+      if (event === "PASSWORD_RECOVERY") setTimeout(() => void validateSession(), 0);
     });
-    return () => sub.subscription.unsubscribe();
+    // getSession waits for the URL tokens to be processed, including when the
+    // recovery event was emitted before this page subscribed.
+    if (isRecovery && params.get("access_token") && params.get("refresh_token")) {
+      void supabase.auth.getSession().then(() => validateSession()).catch(() => {
+        if (active) setChecking(false);
+      });
+    } else {
+      setChecking(false);
+    }
+    return () => { active = false; sub.subscription.unsubscribe(); };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -81,7 +101,8 @@ function ResetPasswordPage() {
               Criar nova senha
             </h1>
 
-            {!ready && (
+    {checking && <p role="status" className="mt-4 text-center text-sm text-muted-foreground">Verificando seu link...</p>}
+    {!checking && !ready && (
               <div className="mt-4 text-center space-y-3">
                 <p className="text-sm text-muted-foreground">
                   Este link de recuperação é inválido ou já foi usado.
